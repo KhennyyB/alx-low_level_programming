@@ -6,6 +6,13 @@
  */
 int main(void)
 {
-	write("and that piece of art is useful - Dora Korpar, 2015-10-19");
+
+ // Get the character to be written
+    char ch = 'and that piece of art is useful" - Dora Korpar, 2015-10-19';
+  
+    // Write the Character to stdout
+        putchar(ch);
+
 	return (1);
 }
+
