@@ -1,13 +1,11 @@
-#include <stdio.h>
-#include <math.h>
+#include "main.h"
 
 /**
- *
- *
- *
+ * print_number - print an integer 
+ * Description: only use _putchar
+ * Return: 0
  */
-
-int main(void)
+void print_number(int n)
 {
 	long num, a;
 
