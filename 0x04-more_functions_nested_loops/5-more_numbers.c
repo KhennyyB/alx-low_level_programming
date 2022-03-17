@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * void more_numbers - prints 10x the numbers 0-14, followed by a new line
+ * more_numbers - prints 10x the numbers 0-14, followed by a new line
  * Description: You can only use _putchar three times
  * Return: nothing
  */
