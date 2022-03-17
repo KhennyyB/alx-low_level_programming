@@ -2,7 +2,7 @@
 
 /**
  * print_numbers - prints the numbers 0-9, followed by a new line
- * Return: 0 on success
+ * Description: You can only use _putchar twice
  */
 void print_numbers(void)
 {
@@ -12,8 +12,7 @@ void print_numbers(void)
 	{
 
 		_putchar(i);
-i++;						
+		i++;						
 	}
 	_putchar('\n');
-	return (0);
 }
