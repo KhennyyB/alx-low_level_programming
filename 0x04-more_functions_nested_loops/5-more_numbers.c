@@ -2,24 +2,24 @@
 /**
  * void more_numbers - prints 10x the numbers 0-14, followed by a new line
  * Description: You can only use _putchar three times
+ * Return: nothing
  */
 void more_numbers(void)
 {
-	int c, i;
+	int i, j;
 
-	c = 0;
-	while (c < 10)
+	i = j = 0;
+	while (i < 10)
 	{
-		i = 0;
-		while (i < 15)
+		while (j <= 14)
 		{
-			if (i > 9)
-				_putchar(i / 10 + '0');
-
-			_putchar(i % 10 + '0');
-			i++;
+			if (j >= 10)
+				_putchar(j / 10 + '0');
+			_putchar(j % 10 + '0');
+			++j;
 		}
-		c++;
 		_putchar('\n');
+		j = 0;
+		i++;
 	}
 }
