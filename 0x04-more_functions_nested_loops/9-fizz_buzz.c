@@ -21,8 +21,8 @@ int main(void)
 		else
 			printf("%d", i);
 		if (i != 100)
-			printf(' ');
+			_putchar(' ');
 	}
-	printf('\n');
+	_putchar('\n');
 	return (0);
 }
