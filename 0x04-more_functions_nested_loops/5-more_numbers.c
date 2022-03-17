@@ -4,22 +4,20 @@
  * Description: You can only use _putchar three times
  * Return: nothing
  */
-void more_numbers(void)
+void print_alphabet_x10(void)
 {
-	int i, j;
+	int i = 0;
+	char c;
 
-	i = j = 0;
 	while (i < 10)
 	{
-		while (j <= 14)
+		c = '0';
+		while (c <= '14')
 		{
-			if (j >= 10)
-				_putchar(j / 10 + '0');
-			_putchar(j % 10 + '0');
-			++j;
+			_putchar(c);
+			c++;
 		}
 		_putchar('\n');
-		j = 0;
 		i++;
 	}
 }
