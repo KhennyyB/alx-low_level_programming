@@ -1,39 +1,27 @@
+#include <stdio.h>
+#include <math.h>
 #include "main.h"
-
 /**
- * print_number - prints a integer
- * @n: Input number
+ *
+ *
+ *
  */
 
-void print_number(int n)
+int main(void)
 {
-	long len, res, i, temp, expo;
+	long num, a;
 
-	res = n;
-	expo = len =  1;
-/*Check negatives*/
-	if (res < 0)
+	a = 2;
+	num = 612852475143;
+	while (a < sqrt(num))
 	{
-		res *= -1;
-		_putchar('-');
+		while (num % a == 0)
+		{
+			num = num / a;
+			printf("%ld %ld\n", num, a);
+		}
+		a++;
 	}
-
-/**/
-	temp = res;
-	while (temp >= 10)
-	{
-		len++;
-		temp /= 10;
-	}
-
-/*Create Exponent*/
-	for (i = 1; i < len; i++)
-		expo *= 10;
-/*Main */
-	while (expo > 1)
-	{
-		_putchar((res / expo) % 10 + '0');
-		expo /= 10;
-	}
-	_putchar(res % 10 + '0');
+	printf("%ld\n", num);
+	return (0);
 }
