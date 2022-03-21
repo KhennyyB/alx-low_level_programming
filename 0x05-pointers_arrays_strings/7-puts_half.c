@@ -10,14 +10,13 @@ void puts_half(char *str)
 {
 	int i;
 
-	i = 0;
-	while (i < n)
+	for (i = 0; str[i] != '\0'; i++)
+		;
+
+	i++;
+	for (i /= 2; str[i] != '\0'; i++)
 	{
-		if (i != n - 1)
-			printf("%d, ", a[i]);
-		else
-			printf("%d", a[i]);
-		i++;
+		_putchar(str[i]);
 	}
-	putchar('\n');
+	_putchar('\n');
 }
