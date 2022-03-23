@@ -11,7 +11,7 @@ char *cap_string(char *s)
 	char sep[] = " \t\n,;.!?\"(){}";
 
 	i = 1;
-	if (s[0] > 96 && s[0] = 123)
+	if (s[0] > 96 && s[0] < 123)
 		s[0] -= 32;
 	while (s[i] != '\0')
 	{
