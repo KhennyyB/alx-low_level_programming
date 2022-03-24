@@ -8,21 +8,16 @@
 
 char *leet(char *s)
 {
-	int i;
+	int x, y;
+	char subs[] = "aAeEoOtTlL";
+	char leet[] = "43071";
 
-	for (i = 0; s[i] != '\0'; i++)
+	x = 0;
+	for (x = 0; s[x] != '\0'; x++)
 	{
-		while (s[i] == 'a' || s[i] == 'A')
-			s[i] = '4';
-		while (s[i] == 'e' || s[i] == 'E')
-			s[i] = '3';
-		while (s[i] == 'o' || s[i] == 'O')
-			s[i] = '0';
-		while (s[i] == 't' || s[i] == 'T')
-			s[i] = '7';
-		while (s[i] == 'l' || s[i] == 'L')
-			s[i] = '1';
+		for (y = 0; subs[y] != '\0'; y++)
+			if (s[x] == subs[y])
+				s[x] = leet[y / 2];
 	}
-
 	return (s);
 }
