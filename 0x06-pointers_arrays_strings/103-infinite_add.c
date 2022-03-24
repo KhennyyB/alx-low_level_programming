@@ -1,78 +1,47 @@
 #include "main.h"
 
 /**
- * rev_string - reverse array
- * @n: integer params
- * Return: 0
- */
-
-void rev_string(char *n)
-{
-	int i = 0;
-	int j = 0;
-	char temp;
-
-	while (*(n + i) != '\0')
-	{
-		i++;
-	}
-	i--;
-
-	for (j = 0; j < i; j++, i--)
-	{
-		temp = *(n + j);
-		*(n + j) = *(n + i);
-		*(n + i) = temp;
-	}
-}
-
-/**
- * infinite_add - add two numbers together
- * @n1: text representation of 1st number to add
- * @n2: text representation of 2nd number to add
- * @r: pointer to buffer
- * @size_r: buffer size
- * Return: pointer to calling function
+ *infinite_add - add two numbers.
+ *
+ *@n1: first number.
+ *@n2: second number.
+ *@r: result.
+ *@size_r: result size.
+ *Return: the addition of n1 and n2.
  */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int overflow = 0, i = 0, j = 0, digits = 0;
-	int val1 = 0, val2 = 0, temp_tot = 0;
+	int add = 0, len1, len2, i, j;
 
-	while (*(n1 + i) != '\0')
-		i++;
-	while (*(n2 + j) != '\0')
-		j++;
-	i--;
-	j--;
-	if (j >= size_r || i >= size_r)
+	for (len1 = 0; n1[len1]; len1++)
+	;
+	for (len2 = 0; n2[len2]; len2++)
+	;
+	if (len1 > size_r || len2 > size_r)
 		return (0);
-	while (j >= 0 || i >= 0 || overflow == 1)
+	len1--;
+	len2--;
+	size_r--;
+	for (i = 0; i < size_r; i++, len1--, len2--)
 	{
-		if (i < 0)
-			val1 = 0;
-		else
-			val1 = *(n1 + i) - '0';
-		if (j < 0)
-			val2 = 0;
-		else
-			val2 = *(n2 + j) - '0';
-		temp_tot = val1 + val2 + overflow;
-		if (temp_tot >= 10)
-			overflow = 1;
-		else
-			overflow = 0;
-		if (digits >= (size_r - 1))
-			return (0);
-		*(r + digits) = (temp_tot % 10) + '0';
-		digits++;
-		j--;
-		i--;
+		if (len1 >= 0)
+			add += n1[len1] - '0';
+		if (len2 >= 0)
+			add += n2[len2] - '0';
+		if (len1 < 0 && len2 < 0 && add == 0)
+			break;
+		r[i] = add % 10 + '0';
+		add /= 10;
 	}
-	if (digits == size_r)
+	r[i] = '\0';
+	if (len1 >= 0 || len2 >= 0 || add)
 		return (0);
-	*(r + digits) = '\0';
-	rev_string(r);
+	for (i--, j = 0; i > j; i--, j++)
+	{
+		add = r[i];
+		r[i] = r[j];
+		r[j] = add;
+	}
 	return (r);
 }
