@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 /**
- * main - multiply 2 numbers 
- * @argc: argument count must be two numbers
+ * main - multiplies two numbers and prints the result
+ * @argc: argument count must be exactly two numbers
  * @argv: argument vector
- * Return: 1 if error, 0 if function runs correctly
+ * Return: 0 on success, 1 on failure
  */
-
 int main(int argc, char *argv[])
 {
-	(void) argc;
+	int res1, res2;
 
+	res1 = res2 = 0;
 	if (argc == 3)
 	{
-		printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
+		res1 = atoi(argv[1]);
+		res2 = atoi(argv[2]);
+		printf("%d\n", res1 * res2);
 		return (0);
 	}
 	else
