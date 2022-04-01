@@ -4,7 +4,7 @@
 
 /**
  * main - multiply 2 numbers 
- * @argc: argument count
+ * @argc: argument count must be two numbers
  * @argv: argument vector
  * Return: 1 if error, 0 if function runs correctly
  */
