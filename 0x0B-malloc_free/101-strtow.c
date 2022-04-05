@@ -1,86 +1,106 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
-/**
- * wordcounter - counts words and the letters in them
- * @str: string to count
- * @pos: position of the word to count characters from
- * @firstchar: position of the first letter of the word
- * if pos = 0, count the number of chars in the word
- * else count number of words
- * Return: wordcount if pos == 0,
- * length of word if pos > 0,
- * position of word if pos > 0 && firstchar > 0
- */
-int wordcounter(char *str, int pos, char firstchar)
-{
-	int i, wordcount, charcount, flag;
+#include <stdlib.h>
 
-	str[0] != ' ' ? (wordcount = 1) : (wordcount = 0);
-	for (i = 0, flag = 0; str[i]; i++)
-	{
-		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0' && flag == 0)
-		{
-			wordcount++;
-			flag = 1;
-		}
-		if (pos > 0 && pos == wordcount)
-		{
-			if (pos > 0 && pos == wordcount && firstchar > 0)
-				return (i);
-			for (charcount = 0; str[i + charcount + 1] != ' '; charcount++)
-				;
-			return (charcount);
-		}
-		if (str[i] == ' ')
-			flag = 0;
-	}
-	return (wordcount);
-}
 /**
- * strtow - convert a string into a 2d array of words
- * @str: string to convert
- * Return: double pointer to 2d array
+ * strtow - splits a string into words
+ * @str: string of words to be split
+ * Return: double pointer to strings
  */
 char **strtow(char *str)
 {
-	int wc, wordlen, getfirstchar, len, i, j;
-	char **p;
+	char **ptr;
+	int i, k, len, start, end, j = 0;
+	int words =  countWords(str);
 
-	for (len = 0; str[len]; len++)
-		;
-	if (str == NULL)
+	if (!str || !countWords(str))
 		return (NULL);
-	wc = wordcounter(str, 0, 0);
-	if (len == 0 || wc == 0)
+	ptr = malloc(sizeof(char *) * (words + 1));
+	if (!ptr)
 		return (NULL);
-	p = malloc((wc + 1) * sizeof(void *));
-	if (p == NULL)
-		return (NULL);
-	for (i = 0, wordlen = 0; i < wc; i++)
+	for (i = 0; i < words; i++)
 	{
-		/* Allocate memory for nested elements */
-		wordlen = wordcounter(str, i + 1, 0);
-		if (i == 0 && str[i] != ' ')
-			wordlen++;
-		p[i] = malloc(wordlen * sizeof(char) + 1);
-		if (p[i] == NULL)
+		start = startIndex(str, j);
+		end = endIndex(str, start);
+		len = end - start;
+		ptr[i] = malloc(sizeof(char) * (len + 1));
+		if (!ptr[i])
 		{
-			for ( ; i >= 0; --i)
-				free(p[i]);
-			free(p);
+			i -= 1;
+			while (i >= 0)
+			{
+				free(ptr[i]);
+					i--;
+			}
+			free(ptr);
 			return (NULL);
 		}
-		/* initialize each element of the nested array with the word*/
-		getfirstchar = wordcounter(str, i + 1, 1);
-		if (str[0] != ' ' && i > 0)
-			getfirstchar++;
-		else if (str[0] == ' ')
-			getfirstchar++;
-		for (j = 0; j < wordlen; j++)
-			p[i][j] = str[getfirstchar + j];
-		p[i][j] = '\0';
+		for (k = 0; k < len; k++)
+			ptr[i][k] = str[start++];
+		ptr[i][k++] = '\0';
+		j = end + 1;
 	}
-	p[i] = NULL;
-	return (p);
+	ptr[i] = NULL;
+	return (ptr);
+}
+
+/**
+ * isSpace - determines if character is a space or not
+ * @c: input char
+ * Return: 1 if true or 0 or not
+ */
+int isSpace(char c)
+{
+	return (c == ' ');
+}
+
+/**
+ * startIndex - returns first index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of first non-space char
+ */
+int startIndex(char *s, int index)
+{
+
+	while (isSpace(*(s + index)))
+		index++;
+	return (index);
+}
+
+/**
+ * endIndex - returns last index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of last index of non-space char
+ */
+int endIndex(char *s, int index)
+{
+	while (!isSpace(*(s + index)))
+		index++;
+	return (index);
+}
+
+/**
+ * countWords - counts numbers of words in string
+ * @s: input string
+ * Return: number of words
+ */
+int countWords(char *s)
+{
+	int wordOn = 0;
+	int words = 0;
+
+	while (*s)
+	{
+		if (isSpace(*s) && wordOn)
+			wordOn = 0;
+		else if (!isSpace(*s) && !wordOn)
+		{
+			wordOn = 1;
+			words++;
+		}
+		s++;
+	}
+	return (words);
 }
