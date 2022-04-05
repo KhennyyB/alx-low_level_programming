@@ -8,9 +8,7 @@
  * @firstchar: position of the first letter of the word
  * if pos = 0, count the number of chars in the word
  * else count number of words
- * Return: wordcount if pos == 0,
- * length of word if pos > 0,
- * position of word if pos > 0 && firstchar > 0
+ * Return: wordcount if pos == 0
  */
 int wordcounter(char *str, int pos, char firstchar)
 {
