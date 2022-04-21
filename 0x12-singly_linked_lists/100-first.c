@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * before_main - Print statement within this function before running main function.
+ * before_main - Print statement within this function before exe main function.
  */
 void __attribute__((constructor)) before_main(void)
 {
