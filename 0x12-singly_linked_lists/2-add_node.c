@@ -1,12 +1,10 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 /**
- * add_node - add a new node at the beginning of 'list_t' list
- * @head: head of the linked list
- * @str: string to store in the list
- * Return: address of the new element
+ * add_node - adds a new node at the beginning
+ * of a list_t list.
+ * @head: head of the linked list.
+ * @str: string to store in the list.
+ * Return: address of the head.
  */
 
 list_t *add_node(list_t **head, const char *str)
