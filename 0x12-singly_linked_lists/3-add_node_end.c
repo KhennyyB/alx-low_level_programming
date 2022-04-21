@@ -45,17 +45,17 @@ void *_strdup(const char *src)
 list_t *add_node_end(list_t **head, const char *str)
 {
 	list_t *new_node, *current;
-	char *dupstr;
+	char *c;
 
 	if (str == NULL)
 		return (NULL);
 	dupstr = _strdup(str);
-	if (dupstr == NULL)
+	if (c == NULL)
 		return (NULL);
 	new_node = malloc(sizeof(list_t));
 	if (new_node == NULL)
 		return (NULL);
-	new_node->str = dupstr;
+	new_node->str = c;
 	new_node->len = _strlen(str);
 	new_node->next = NULL;
 
