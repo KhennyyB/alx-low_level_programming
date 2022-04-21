@@ -44,7 +44,7 @@ void *_strdup(const char *src)
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-	list_t *new, *current;
+	list_t *new_node, *current;
 	char *dupstr;
 
 	if (str == NULL)
@@ -52,21 +52,21 @@ list_t *add_node_end(list_t **head, const char *str)
 	dupstr = _strdup(str);
 	if (dupstr == NULL)
 		return (NULL);
-	new = malloc(sizeof(list_t));
-	if (new == NULL)
+	new_node = malloc(sizeof(list_t));
+	if (new_node == NULL)
 		return (NULL);
-	new->str = dupstr;
-	new->len = _strlen(str);
-	new->next = NULL;
+	new_node->str = dupstr;
+	new_node->len = _strlen(str);
+	new_node->next = NULL;
 
 	if (*head == NULL)
 	{
-		*head = new;
+		*head = new_node;
 		return (*head);
 	}
 	current = *head;
 	while (current->next != NULL)
 		current = current->next;
-	current->next = new;
+	current->next = new_node;
 	return (*head);
 }
