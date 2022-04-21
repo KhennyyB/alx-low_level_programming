@@ -48,22 +48,15 @@ list_t *add_node_end(list_t **head, const char *str)
 	char *dupstr;
 
 	if (str == NULL)
-	{
 		return (NULL);
-	}
-	dupstr = strdup(str);
+	dupstr = _strdup(str);
 	if (dupstr == NULL)
-	{
 		return (NULL);
-	}
 	new_node = malloc(sizeof(list_t));
 	if (new_node == NULL)
-	{
 		return (NULL);
-	}
-
 	new_node->str = dupstr;
-	new_node->len = strlen(str);
+	new_node->len = _strlen(str);
 	new_node->next = NULL;
 
 	if (*head == NULL)
