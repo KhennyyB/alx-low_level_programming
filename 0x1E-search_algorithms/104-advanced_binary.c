@@ -65,7 +65,6 @@ int binary_search_ex(int *array, int value, int first, int last)
 			return (binary_search_ex(array, value, mid + 1, last_idx));
 		if (value < array[mid])
 			return (binary_search_ex(array, value, first_idx, mid - 1));
-		else
 		{
 			if (value == array[mid - 1])
 				return (binary_search_ex(array, value, first_idx, mid));
